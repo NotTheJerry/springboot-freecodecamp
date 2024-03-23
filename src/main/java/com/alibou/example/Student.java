@@ -1,11 +1,20 @@
 package com.alibou.example;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Student {
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;
     private String email;
     private String age;
+
+    public Student() {
+
+    }
 
     public Student(String firstName, String lastName, String email, String age) {
         this.firstName = firstName;
