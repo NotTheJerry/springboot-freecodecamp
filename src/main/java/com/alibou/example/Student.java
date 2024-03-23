@@ -1,16 +1,32 @@
 package com.alibou.example;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "T_STUDENT")
 public class Student {
     @Id
+    @GeneratedValue
     private Integer id;
+    @Column(
+            name = "c_fname",
+            length = 20
+    )
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String age;
+    @OneToOne(
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
+    private StudentProfile studentProfile;
+    @ManyToOne
+    @JoinColumn(
+            name = "school_id"
+    )
+    private School school;
 
     public Student() {
 
@@ -61,5 +77,13 @@ public class Student {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }
