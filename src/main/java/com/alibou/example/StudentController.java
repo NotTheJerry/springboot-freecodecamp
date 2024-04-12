@@ -14,10 +14,28 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public Student post(
-            @RequestBody Student student
+    public StudentResponseDto post(
+            @RequestBody StudentsDto dto
     ) {
-        return repository.save(student);
+        var student = toStudent(dto);
+        var savedStudent = repository.save(student);
+        return toStudentResponseDto(savedStudent);
+    }
+
+    private Student toStudent(StudentsDto dto){
+        var student = new Student();
+        student.setFirstName(dto.firstName());
+        student.setLastName(dto.lastName());
+        student.setEmail(dto.email());
+        var school = new School();
+        school.setId(dto.schoolId());
+        student.setSchool(school);
+
+        return student;
+    }
+
+    private StudentResponseDto toStudentResponseDto(Student student){
+        return new StudentResponseDto(student.getFirstName(), student.getLastName(), student.getEmail());
     }
 
     @GetMapping("/students")
