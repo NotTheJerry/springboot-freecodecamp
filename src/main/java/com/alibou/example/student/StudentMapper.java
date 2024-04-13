@@ -1,5 +1,6 @@
-package com.alibou.example;
+package com.alibou.example.student;
 
+import com.alibou.example.school.School;
 import org.springframework.stereotype.Service;
 
 @Service

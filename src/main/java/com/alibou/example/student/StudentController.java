@@ -1,4 +1,4 @@
-package com.alibou.example;
+package com.alibou.example.student;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +10,10 @@ public class StudentController {
 
     public final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
+    public final StudentMapper studentMapper;
+
+    public StudentController(StudentService studentService, StudentMapper studentMapper) {
         this.studentService = studentService;
-    }
-    public StudentController(StudentMapper studentMapper) {
         this.studentMapper = studentMapper;
     }
 
