@@ -2,7 +2,6 @@ package com.alibou.example.student;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,7 +24,7 @@ public class StudentController {
 
     @PostMapping("/students")
     public StudentResponseDto saveStudent(
-            @Valid @RequestBody StudentsDto dto
+            @Valid @RequestBody StudentDto dto
     ) {
         return this.studentService.saveStudent(dto);
     }

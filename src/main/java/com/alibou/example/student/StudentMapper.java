@@ -1,11 +1,15 @@
 package com.alibou.example.student;
 
 import com.alibou.example.school.School;
+import jakarta.validation.constraints.Null;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentMapper {
-    public Student toStudent(StudentsDto dto){
+    public Student toStudent(StudentDto dto){
+        if(dto == null){
+            throw new NullPointerException("The student Dto should not be null");
+        }
         var student = new Student();
         student.setFirstName(dto.firstName());
         student.setLastName(dto.lastName());
